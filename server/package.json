@@ -1,12 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server side logic for the Odin chatapp",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["REST API", "Express", "MongoDB", "chatapp"],
   "author": "",
   "license": "ISC",
   "dependencies": {

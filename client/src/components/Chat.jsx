@@ -23,7 +23,7 @@ const Chat = () => {
       const pathId = location.href.split("/")[4];
 
       const fetchChatInfo = async () => {
-        const response = await fetch(`http://localhost:9000/chatroom/${pathId}`)
+        const response = await fetch(`https://chatapp-backend-htbo.onrender.com/chatroom/${pathId}`)
         if (response.ok) {
           const existingData = await response.json()
           const cName = existingData.existingRoom.name
@@ -67,7 +67,7 @@ const Chat = () => {
         },
         body: JSON.stringify(senderInfo)
       }
-      const response = fetch(`http://localhost:9000/chatroom/${pathId}`, options)
+      const response = fetch(`https://chatapp-backend-htbo.onrender.com/chatroom/${pathId}`, options)
       setCurrentChat("")
       if (response.ok) {
         const newMessage = await response.json()

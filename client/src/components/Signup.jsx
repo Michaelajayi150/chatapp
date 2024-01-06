@@ -27,7 +27,7 @@ const Signup = () => {
     username.length < 6 ? toast.error("Username must be more than 6 characters") : null;
     password == secpassword ? null : toast.error("Passwords must match");
     if (emailRegex.test(email) && passwordRegex.test(password) && username.length > 6 && password == secpassword) {
-      axios.post('http://localhost:9000/signup',
+      axios.post('https://chatapp-backend-htbo.onrender.com/signup',
 
         {email: email, username: username, password: password}
 

@@ -24,7 +24,7 @@ const Login = () => {
         // passwordRegex.test(password) ? null : toast.error("Your password must be a minimum of eight characters, at least one letter, one number and one special character");
         password.length != 0 ? null : toast.error("Please enter your password");
         if (emailRegex.test(email) && password.length != 0) {
-            axios.post('http://localhost:9000/login',
+            axios.post('https://chatapp-backend-htbo.onrender.com/login',
                 { 
                     email: email, 
                     password: password 

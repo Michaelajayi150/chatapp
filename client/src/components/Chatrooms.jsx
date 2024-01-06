@@ -20,7 +20,7 @@ const Chatrooms = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:9000/chatroom', {
+        const response = await fetch('https://chatapp-backend-htbo.onrender.com/chatroom', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const Chatrooms = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:9000/chatroom',
+      const res = await axios.post('https://chatapp-backend-htbo.onrender.com/chatroom',
         {
           name: roomName
         });
@@ -62,7 +62,7 @@ const Chatrooms = () => {
     }
   };
   const handleDelete = async (uid) => {
-    await axios.delete(`http://localhost:9000/chatroom/${uid}`)
+    await axios.delete(`https://chatapp-backend-htbo.onrender.com/chatroom/${uid}`)
       .then(res => {
         if (res.status == 204) {
           toast.success("Deleted chatroom");
@@ -73,7 +73,7 @@ const Chatrooms = () => {
       })
   }
   const goToRoom = async (uid) => {
-     await axios.get(`http://localhost:9000/chatroom/${uid}`)
+     await axios.get(`https://chatapp-backend-htbo.onrender.com/chatroom/${uid}`)
      .then(res => {
       console.log(res)
       if (res.status == 200) {

@@ -1,17 +1,16 @@
 const express = require("express")
-const dbConn = require("../utils/dbconnect") //Import the utility for connecting to the database
+const dbConn = require("./server/utils/dbconnect") //Import the utility for connecting to the database
 const {createServer} = require("http") 
 const app = express()
 const {Server} = require("socket.io") 
 const server = createServer(app)
-const io = new Server(server)
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
-const {allowCrossDomain} = require("../middleware/corsHandler")
-const user_controller = require("../controllers/userController")
-const room_controller = require("../controllers/roomController")
-const chat_controller = require("../controllers/chatController")
+const {allowCrossDomain} = require("./server/middleware/corsHandler")
+const user_controller = require("./server/controllers/userController")
+const room_controller = require("./server/controllers/roomController")
+const chat_controller = require("./server/controllers/chatController")
 const PORT = process.env.PORT || 9000
 app.use(cors())
 app.use(allowCrossDomain);

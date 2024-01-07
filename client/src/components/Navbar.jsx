@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import OdinLogo from '../assets/logo.svg';
 import { CgProfile } from 'react-icons/cg';
 import { ToastContainer, toast } from "react-toastify"
+import {Link} from 'react-router-dom'
 import "react-toastify/dist/ReactToastify.css"
 const Navbar = () => {
     // State to manage user login status
@@ -30,7 +31,7 @@ const Navbar = () => {
              <ToastContainer/>
             <div className="flex flex-row gap-8">
                 <div className="brand flex flex-row gap-3 items-center">
-                <a href="/"><img src={OdinLogo} alt="Logo" /></a>
+                <Link to="/"><img src={OdinLogo} alt="Logo" /></Link>
                     <h2 className="text font-bold text-xl" style={{ fontSize: '30px', fontFamily: 'Poppins' }}>
                         Odin Chat
                     </h2>
@@ -55,12 +56,12 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className="flex flex-row items-center gap-4">
-                        <a href="/login" style={{ fontFamily: 'Poppins', fontSize: '20px', color: 'white' }}>
+                        <Link to="/login" style={{ fontFamily: 'Poppins', fontSize: '20px', color: 'white' }}>
                             Log In
-                        </a>
-                        <a href="/signup" className="bg-indigo-400 p-2" style={{ fontFamily: 'Poppins', fontSize: '20px', color: 'white' }}>
+                        </Link>
+                        <Link to="/signup" className="bg-indigo-400 p-2" style={{ fontFamily: 'Poppins', fontSize: '20px', color: 'white' }}>
                             Sign Up
-                        </a>
+                        </Link>
                     </div>
                 )}
             </div>

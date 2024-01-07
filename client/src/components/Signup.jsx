@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import OdinLogo from '../assets/logo.svg';
 import axios from "axios";
+import {Link} from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 const Signup = () => {
@@ -50,7 +51,7 @@ const Signup = () => {
     <div className="container mx-auto">
       <ToastContainer />
       <div className="flex flex-row items-center gap-3">
-      <a href="/"><img src={OdinLogo} alt="Logo" /></a>
+      <Link to="/"><img src={OdinLogo} alt="Logo" /></Link>
         <h2 className="text font-bold text-xl" style={{ fontSize: '30px', fontFamily: 'Poppins' }}>
           Odin Chat
         </h2>
@@ -68,7 +69,7 @@ const Signup = () => {
         <label htmlFor="password" className="text-left">Confirm Password</label>
         <input type="password" name="secpassword" id="secpassword" className="h-9 rounded text-white outline-none px-3 w-2/4" value={secpassword} onChange={(e) => { setSecPassword(e.target.value) }} />
         <input type="submit" className="bg-blue-500 text-white rounded h-10 w-2/4 m-3" value="Sign Up" onClick={(e) => handleSubmit(e)} />
-        <p className="m-2">Have an account? <a href="/login">Log In</a></p>
+        <p className="m-2">Have an account? <Link to="/login">Log In</Link></p>
 
         <button className="flex flex-row items-center justify-center w-2/4 h-10 bg-gray-500 text-white p-3 focus:outline-none  gap-3 border-lg rounded">
                     <FaGithub style={{ fontSize: '20px' }} />

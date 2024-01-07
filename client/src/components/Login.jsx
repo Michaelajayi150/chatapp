@@ -4,8 +4,7 @@ import OdinLogo from '../assets/logo.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
-
+import {Link} from 'react-router-dom'
 const Login = () => {
 
     const [formState, setFormState] = useState({
@@ -98,8 +97,8 @@ const Login = () => {
                     className="bg-blue-500 text-white rounded h-10 w-2/4 m-3"
                     value="Log In"
                     onClick={(e) => handleSubmit(e)} />
-                <p className="m-2">Are you new? <a href="/signup">Sign Up</a></p>
-                <a href="#">Forgotten Password?</a>
+                <p className="m-2">Are you new? <Link to="/signup">Sign Up</Link></p>
+               <Link to="#">Forgotten Password?</Link>
                 <button className="flex flex-row items-center justify-center w-2/4 h-10 bg-gray-500 text-white p-3 focus:outline-none  gap-3 border-lg rounded">
                     <FaGithub style={{ fontSize: '20px' }} />
                     Sign In With GitHub

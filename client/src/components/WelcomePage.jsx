@@ -21,7 +21,7 @@ const WelcomePage = () => {
       <h1 className="text font-bold">A new approach to chatting</h1>
       <p className="p-7">Odin Chat brings your social interactions to the next level and blah blah blah</p>
       <button className="bg-indigo-500 p-3 rounded" style={{fontFamily:"Poppins", fontSize:"20px", color: "white"}}>
-        <Link to="/login" style={{fontFamily:"Poppins", fontSize:"20px", color: "white"}}>Start Chatting</Link>
+        <Link to="/chatrooms" style={{fontFamily:"Poppins", fontSize:"20px", color: "white"}}>Start Chatting</Link>
         </button>
     </div>
   );

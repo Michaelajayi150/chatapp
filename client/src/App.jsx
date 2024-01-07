@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/chatroom/:id" element={<Chat />} />
         <Route exact path="/chatrooms" element={<Chatrooms />} />
-        <Route path="*" element={<NotFound/>} />
+        <Route exact path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>
   );

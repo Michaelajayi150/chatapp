@@ -10,9 +10,9 @@ import NotFound from './components/NotFound';
 
 function App() {
   return (
-    <BrowserRouter basename="/home">
+    <BrowserRouter basename="/">
       <Routes>
-        <Route path="/home" element={<WelcomePage />} />
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/chatroom/:id" element={<Chat />}/>

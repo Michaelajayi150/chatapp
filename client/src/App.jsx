@@ -15,8 +15,8 @@ function App() {
         <Route path="/" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/chatroom/:id" element={<Chat />}/>
-        <Route path="/chatrooms/" element={<Chatrooms />} />
+        <Route path="/croom/:id" element={<Chat />}/>
+        <Route path="/crooms/" element={<Chatrooms />} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>

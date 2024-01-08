@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -10,7 +10,6 @@ import NotFound from './components/NotFound';
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/login" element={<Login />} />
@@ -19,7 +18,6 @@ function App() {
         <Route path="/chatrooms" element={<Chatroom />} />
         <Route path="*" element={<NotFound/>} />
       </Routes>
-    </BrowserRouter>
   );
 }
 

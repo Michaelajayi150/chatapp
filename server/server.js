@@ -31,19 +31,20 @@ server.listen(PORT, () => {
 //    }
 //    res.send(status)
 // })
-app.get("/", (req, res) => {
-   res.json({"message": "Server side for Odin Chat online"})
-})
-/*Auth endpoints */
-app.post("/signup", user_controller.createUser)
-app.post("/login", user_controller.loginUser)
+
+/*Chatroom endpoints start */ 
+app.get("/chatroom", room_controller.getAllRooms)
+app.post("/chatroom", room_controller.createChatRoom)
 
 /*Chat endpoints here */
 app.get("/chatroom/:id", room_controller.getRoom)
 app.post("/chatroom/:id", chat_controller.sendChat)
-
-/*Chatroom endpoints start */ 
-
-app.get("/chatroom", room_controller.getAllRooms)
-app.post("/chatroom", room_controller.createChatRoom)
 app.delete("/chatroom/:id", room_controller.deleteRoom)
+
+app.get("/", (req, res) => {
+   res.json({"message": "Server side for Odin Chat online"})
+})
+
+/*Auth endpoints */
+app.post("/signup", user_controller.createUser)
+app.post("/login", user_controller.loginUser)

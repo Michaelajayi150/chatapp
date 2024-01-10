@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaTrash } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Chatrooms = () => {
   const [roomName, setRoomName] = useState('');
@@ -17,50 +18,38 @@ const Chatrooms = () => {
     }
   ]);
 
+  const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+      await axios.get('https://chatapp-backend-htbo.onrender.com/chatroom')
+      .then((res) => {
+        setRoomData(Array.isArray(res.data.data) ? res.data.data : []);
+      })
+      .catch((err) => console.error('Error fetching data', err))
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://chatapp-backend-htbo.onrender.com/chatroom', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-        //  console.log(response.body)
-        if (response.ok) {
-          const fetchedRoomData = await response.json();
-          //console.log(fetchedRoomData.data)
-          setRoomData(Array.isArray(fetchedRoomData.data) ? fetchedRoomData.data : []);
-
-        } else {
-          console.error('Error fetching data');
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
     fetchData();
-  }, [roomData]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('https://chatapp-backend-htbo.onrender.com/chatroom',
-        {
-          name: roomName
-        });
 
-      if (res.status === 201) {
-        toast.success('Created chatroom');
-        fetchData(); // Refresh room data after creating a chatroom
-      } else {
-        toast.error('Some weird error');
-      }
+    try {
+      await axios.post('https://chatapp-backend-htbo.onrender.com/chatroom',
+        { name: roomName }).then((res) => {
+          toast.success('Created chatroom');
+          fetchData(); // Refresh room data after creating a chatroom
+        }).catch((err) => toast.error('Some weird error'))
     } catch (error) {
       console.error(error);
     }
   };
+
   const handleDelete = async (uid) => {
     await axios.delete(`https://chatapp-backend-htbo.onrender.com/chatroom/${uid}`)
       .then(res => {
@@ -72,21 +61,18 @@ const Chatrooms = () => {
         }
       })
   }
+
   const goToRoom = async (uid) => {
      await axios.get(`https://chatapp-backend-htbo.onrender.com/chatroom/${uid}`)
      .then(res => {
-      console.log(res)
-      if (res.status == 200) {
         console.log(res.data.existingRoom.messages) //Accesses the messages available
         toast.success(`Redirecting to ${res.data.existingRoom.name}...`);
         setInterval(() => {
-          location.href = res.data.urlLink
+          navigate(res.data.urlLink);
         }, 3000)
-       }
-       else {
+       }).catch((err) => {
          toast.error("Something went wrong")
-       }
-     })
+       })
   } 
   const handleRoomNameChange = (e) => {
     setRoomName(e.target.value);

@@ -12,14 +12,15 @@ const Chat = () => {
   const [chatName, setChatName] = useState("")
   const fileInputRef = useRef(null);
   const formatTime = (timestamp) => {
-        let date = new Date(timestamp)
-        return date.toLocaleString()
+    let date = new Date(timestamp)
+    return date.toLocaleString()
   }
- let token = localStorage.getItem("token")
- let sentBy = JSON.parse(atob(token.split('.')[1])).username
+  
+  // let token = localStorage.getItem("token")
+  // let sentBy = JSON.parse(atob(token.split('.')[1])).username;
+
   useEffect(() => {
     try {
-
       const pathId = location.href.split("/")[4];
 
       const fetchChatInfo = async () => {
@@ -32,7 +33,6 @@ const Chat = () => {
             ? existingData.existingRoom.messages
             : []
           setPreviousChats(msgs);
-        
         } else {
           toast.error("Something went wrong in fetching the previous chats")
         }
@@ -43,6 +43,7 @@ const Chat = () => {
       toast.error("Something went wrong in fetching the previous chats", e.msg);
     }
   }, [previousChats]);
+
   const handleImageClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
@@ -50,14 +51,18 @@ const Chat = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
     const pathId = window.location.href.split("/")[4]
     console.log(pathId)
-    const token = localStorage.getItem("token")
+
+    const token = localStorage.getItem("token");
+
     const senderInfo = {
       sentBy: JSON.parse(atob(token.split('.')[1])).username,
       message: currentChat,
     }
+
     try {
       //options for fetch
       const options = {
@@ -67,18 +72,16 @@ const Chat = () => {
         },
         body: JSON.stringify(senderInfo)
       }
+
       const response = fetch(`https://chatapp-backend-htbo.onrender.com/chatroom/${pathId}`, options)
       setCurrentChat("")
       if (response.ok) {
         const newMessage = await response.json()
         console.log("Submitted:", senderInfo)
-
       }
-
     } catch (e) {
       toast.error("Couldn't send message")
     }
-
   }
 
   return (
